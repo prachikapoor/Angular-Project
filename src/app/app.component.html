@@ -1,0 +1,25 @@
+my app work{{title}}
+
+<input type="text" [(ngModel)]="username">
+{{username}}
+<button class="btn btn-primary" [disabled] = "username === ''" (click)="Onupdate()">Add user</button>
+<!-- <button class="btn btn-primary" (click)="showsecret =! showsecret">Display</button> -->
+<button class="btn btn-primary" (click)="ontoggle()">Display</button>
+<p *ngIf="showsecret">hello details</p>
+<p *ngFor='let p of log' [ngStyle]="{backgroundColor: p>5? 'blue':'yellow'}"
+  [ngClass]="{'white-text': p>5}">{{p}}</p>
+<app-servers></app-servers>
+<app-cookpit
+(serverCreated)="onServerAdded($event)"
+(bpCreated)="onBlueprintAdded($event)"
+></app-cookpit>
+<button class="btn btn-primary" (click)="onChangeFirst()">Change first Element</button>
+<button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first Component</button>
+<app-server-element
+*ngFor="let serverElement of serverElements" [srvElement] ="serverElement" [name]="serverElement.name">
+<p #contentParagraph>
+  <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+  <em *ngIf="serverElement.type === 'blueprint'"style="color: blue">{{ serverElement.content }}</em>
+</p>
+</app-server-element>
+
